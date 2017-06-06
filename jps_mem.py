@@ -13,8 +13,8 @@ def print_table(table):
     col_width = [max(len(x) for x in col) for col in zip(*table)]
     print('\n')
     for line in table:
-        print "| " + " | ".join("{:{}}".format(x, col_width[i])
-                                for i, x in enumerate(line)) + " |"
+        print("| " + " | ".join("{:{}}".format(x, col_width[i])
+                                for i, x in enumerate(line)) + " |")
 
 
 def get_result():
