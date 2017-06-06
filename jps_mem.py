@@ -21,13 +21,13 @@ def get_result():
 
     resultTable = []
 
-    jps_folder = os.path.dirname(os.path.realpath(Popen(['which', 'java'], stdout=PIPE).communicate()[0].strip()))
-    if 'jdk' not in jps_folder:
-        jps_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(Popen(['which', 'java'], stdout=PIPE).communicate()[0].strip())))) + '/bin'
+    jps_folder = os.path.dirname(os.path.realpath(Popen(['which', 'java'], stdout=PIPE).communicate()[0].strip())).decode("utf-8")
+    if 'jre' in jps_folder:
+        jps_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(Popen(['which', 'java'], stdout=PIPE).communicate()[0].strip())))).decode("utf-8")  + '/bin'
 
     jps_path = jps_folder + "/jps"
     if os.path.isfile(jps_path): 
-        jps_processes = check_output([jps_path]).split("\n")
+        jps_processes = check_output([jps_path]).decode("utf-8").split("\n")
     else:
         raise Exception("there is no jps in your machine")
 
